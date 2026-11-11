@@ -1,9 +1,5 @@
-﻿using System.Collections;
-using System.ComponentModel;
-using System.Numerics;
-using System.Xml.Serialization;
+﻿string nombrePlan = "";
 int opcion;
-string nombrePlan = "";
 double precio = 0;
 string nombreCliente;
 int opcionModalidad;
@@ -44,13 +40,13 @@ do
     Console.WriteLine();
     Console.WriteLine("============================================================");
 
-    Console.Write("Selecciona una opción");
+    Console.Write("Selecciona una opción: ");
     opcion = int.Parse(Console.ReadLine()!);
 
     switch (opcion)
     {
         case 1:
-        // FASE 2: Datos del cliente.
+            // FASE 2: Datos del cliente.
             Console.WriteLine("============== NUEVA SUSCRIPCIÓN ==============");
             do
             {
@@ -62,7 +58,7 @@ do
                 preciosExtras = 0;
                 totalConDescuento = 0;
 
-                Console.Write("Introduce el nombre del cliente");
+                Console.Write("Introduce el nombre del cliente: ");
                 nombreCliente = Console.ReadLine()!;
 
                 if (string.IsNullOrWhiteSpace(nombreCliente))
@@ -87,7 +83,7 @@ do
                 {
                     Console.WriteLine("Opción no válida.");
                 }
-            }while(opcionModalidad < 1 || opcionModalidad > 3);
+            } while (opcionModalidad < 1 || opcionModalidad > 3);
 
             switch (opcionModalidad)
             {
@@ -95,12 +91,12 @@ do
                     nombrePlan = "Sonora Basic";
                     precio = 4.99;
                     break;
-            
+
                 case 2:
                     nombrePlan = "Sonora Premium";
                     precio = 7.99;
-                    break;          
-                
+                    break;
+
                 case 3:
                     nombrePlan = "Sonora Family";
                     precio = 12.99;
@@ -133,10 +129,10 @@ do
                 switch (serviciosAdicionales)
                 {
                     case 1:
-                        if(descargasElegidas == false)
+                        if (descargasElegidas == false)
                         {
                             descargasElegidas = true;
-                            numeroExtras ++;
+                            numeroExtras++;
                             preciosExtras += 2.00;
 
                             Console.WriteLine("Descargas sin conexión añadidas.");
@@ -145,48 +141,54 @@ do
                         {
                             Console.WriteLine("Este extra ya está seleccionado.");
                         }
-                    break;
-                
-                case 2:
-                    if(audioElegido == false)
-                    {
-                        audioElegido = true;
-                        numeroExtras ++;
-                        preciosExtras += 1.50;
+                        break;
 
-                        Console.WriteLine("Audio de calidad añadido.");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Este extra ya está seleccionado.");
-                    }
-                    break;
-                
-                case 3:
-                    if(listasCompartidas == false)
-                    {
-                        listasCompartidas = true;
-                        numeroExtras ++;
-                        preciosExtras += 5.00;
+                    case 2:
+                        if (audioElegido == false)
+                        {
+                            audioElegido = true;
+                            numeroExtras++;
+                            preciosExtras += 1.50;
 
-                        Console.WriteLine("Servicio de listas compartidas añadido.");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Este extra ya está seleccionado.");
-                    }
-                    break;
-                
-                case 4:
-                    Console.WriteLine("Selección de servicios adicionales finalizada...");
-                    break;
-                
-                default:
-                    Console.WriteLine("Opción no válida.");
-                    break;
-            }
+                            Console.WriteLine("Audio de calidad añadido.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Este extra ya está seleccionado.");
+                        }
+                        break;
 
-            }while(serviciosAdicionales != 4);
+                    case 3:
+                        if (listasCompartidas == false)
+                        {
+                            listasCompartidas = true;
+                            numeroExtras++;
+                            preciosExtras += 5.00;
+
+                            Console.WriteLine("Servicio de listas compartidas añadido.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Este extra ya está seleccionado.");
+                        }
+                        break;
+
+                    case 4:
+                        Console.WriteLine("Selección de servicios adicionales finalizada...");
+                        break;
+
+                    default:
+                        Console.WriteLine("Opción no válida.");
+                        break;
+                }
+
+                //CÓDIGO ACTUALIZADO: mostrar selección
+                if (serviciosAdicionales != 4)
+                {
+                    Console.WriteLine("Número de extras: " + numeroExtras);
+                    Console.WriteLine("Coste provisional: " + preciosExtras.ToString("F2") + " €");
+                }
+            } while (serviciosAdicionales != 4);
 
 
             Console.WriteLine("Número de extras elegidos: " + numeroExtras);
@@ -199,7 +201,7 @@ do
                 Console.WriteLine();
                 Console.WriteLine("1. Mensual");
                 Console.WriteLine("2. Anual (15% de descuento)");
-                
+
                 Console.Write("Selecciona una modalidad de contratación: ");
                 modalidadContratacion = int.Parse(Console.ReadLine()!);
 
@@ -208,21 +210,21 @@ do
                     Console.Write("Opción no valida.");
                 }
 
-            }while(modalidadContratacion < 1 || modalidadContratacion > 2);
+            } while (modalidadContratacion < 1 || modalidadContratacion > 2);
 
             switch (modalidadContratacion)
             {
                 case 1:
-                do
-                { 
-                    Console.Write("¿Cuántos meses?: ");
-                    mesesContratados = int.Parse(Console.ReadLine()!);
-
-                    if (mesesContratados <= 0)
+                    do
                     {
-                        Console.WriteLine("Debes contratar al menos un mes.");
-                    }
-                } while (mesesContratados <= 0);
+                        Console.Write("¿Cuántos meses?: ");
+                        mesesContratados = int.Parse(Console.ReadLine()!);
+
+                        if (mesesContratados <= 0)
+                        {
+                            Console.WriteLine("Debes contratar al menos un mes.");
+                        }
+                    } while (mesesContratados <= 0);
                     descuento = 0;
                     Console.WriteLine("Modalidad elegida: Mensual.");
                     break;
@@ -246,18 +248,28 @@ do
             // FASE 6: Cálculo del importe.
             Console.WriteLine("==================== PAGO ====================");
             Console.WriteLine();
-            Console.WriteLine("Total a pagar: " + totalMesesContratados.ToString("F2") + " €");
 
+            Console.WriteLine("Precio del plan:" + (precio * mesesContratados).ToString("F2") + " €");
+            Console.WriteLine("Precio de extras: " + (preciosExtras * mesesContratados).ToString("F2") + " €");
+            Console.WriteLine("Subtotal: " + (total * mesesContratados).ToString("F2") + " €");
+
+            if(modalidadContratacion == 2)
+            {
+                Console.WriteLine("Subtotal: " + totalConDescuento.ToString("F2") + " €");
+
+            }
+            Console.WriteLine("TOTAL A PAGAR: " + totalMesesContratados.ToString("F2") + " €");
+            Console.WriteLine("===============================================");
             do
-            {     
+            {
                 Console.Write("Introduce el dinero entregado: ");
                 dineroEntregado = double.Parse(Console.ReadLine()!);
 
-                if (dineroEntregado < totalMesesContratados)
+                if (Math.Round(dineroEntregado,2) < Math.Round(totalMesesContratados, 2))
                 {
                     Console.WriteLine("Dinero insuficiente");
                 }
-            }while(dineroEntregado < totalMesesContratados);
+            } while (dineroEntregado < totalMesesContratados);
 
             cambio = dineroEntregado - totalMesesContratados;
             operacion++;
@@ -291,18 +303,24 @@ do
             }
             Console.WriteLine();
             Console.WriteLine("Extras:");
-            if (descargasElegidas == true)
+            if (numeroExtras == 0)
             {
-                Console.WriteLine("Descargas sin conexión");
+                Console.WriteLine("No se han contratado extras.");
             }
-            if(audioElegido == true)
+            else
             {
-                Console.WriteLine("Audio de alta calidad");
-                
-            }
-            if (listasCompartidas == true)
-            {
-                Console.WriteLine("Listas compartidas con hasta 3 personas.");
+                if (descargasElegidas == true)
+                {
+                    Console.WriteLine("Descargas sin conexión");
+                }
+                if (audioElegido == true)
+                {
+                    Console.WriteLine("Audio de alta calidad");
+                }
+                if (listasCompartidas == true)
+                {
+                    Console.WriteLine("Listas compartidas con hasta 3 personas.");
+                }
             }
             Console.WriteLine();
             Console.WriteLine("Precio del plan: " + (precio * mesesContratados).ToString("F2") + " €");
@@ -312,16 +330,16 @@ do
             {
                 Console.WriteLine("Descuento anual (15 %): " + totalConDescuento.ToString("F2") + " €");
             }
-            
+
             Console.WriteLine();
-            Console.Write("TOTAL: " + totalMesesContratados.ToString("F2") + " €");
-            Console.Write("Dinero entregado: " + dineroEntregado.ToString("F2") + " €");
+            Console.WriteLine("TOTAL: " + totalMesesContratados.ToString("F2") + " €");
+            Console.WriteLine("Dinero entregado: " + dineroEntregado.ToString("F2") + " €");
             Console.Write("Cambio: " + cambio.ToString("F2") + " €");
 
-        break;
+            break;
 
         case 2:
-        // FASE 8: Resumen de ventas.
+            // FASE 8: Resumen de ventas.
             Console.WriteLine("=======================  RESUMEN DE VENTAS  =======================");
             Console.WriteLine();
 
@@ -340,7 +358,7 @@ do
                 Console.WriteLine("Importe medio: " + importeMedio.ToString("F2") + " €");
                 Console.WriteLine();
 
-                Console.WriteLine("Contratación de mayor importe");
+                Console.WriteLine("Contratación de mayor importe: ");
                 Console.WriteLine("Cliente: " + clienteMayorImporte);
                 Console.WriteLine("Importe: " + importeMayor.ToString("F2") + " €");
 
@@ -348,13 +366,13 @@ do
             Console.WriteLine();
             Console.WriteLine("==================================================================");
             break;
-        
+
         case 3:
             Console.WriteLine("========================  ¡HASTA PRONTO!  ========================");
             Console.WriteLine();
 
             Console.WriteLine("Suscripciones registradas: " + operacion);
-            Console.WriteLine("Ingresos totales: " + ingresosTotales.ToString("F2") +  " €");
+            Console.WriteLine("Ingresos totales: " + ingresosTotales.ToString("F2") + " €");
             Console.WriteLine();
             Console.WriteLine("=================================================================");
             break;
@@ -362,6 +380,6 @@ do
         default:
             Console.WriteLine("Opción no válida.");
             break;
-        }
+    }
 
 } while (opcion != 3);
