@@ -1,4 +1,4 @@
-# Sonora 🎵
+# Sonora 
 
 ## Descripción
 
@@ -32,9 +32,7 @@ La aplicación está pensada para que un empleado pueda registrar nuevas contrat
 
 También se puede ejecutar desde una terminal, situada en la carpeta del proyecto, mediante el comando:
 
-```bash
 dotnet run
-```
 
 ## Autor
 
