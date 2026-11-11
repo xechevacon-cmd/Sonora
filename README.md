@@ -36,4 +36,4 @@ dotnet run
 
 ## Autor
 
-Proyecto realizado como parte del módulo de Iniciación a la Programación del ciclo de Grado Medio de Sistemas Microinformáticos y Redes (SMR), curso 2026/2027.
+Proyecto realizado por Mariel Echevarria como parte del módulo de Iniciación a la Programación del ciclo de Grado Medio de Sistemas Microinformáticos y Redes (SMR), curso 2026/2027.
